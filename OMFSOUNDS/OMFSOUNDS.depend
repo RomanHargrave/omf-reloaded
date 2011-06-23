@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1308852267 source:/home/lilezek/proyectos/OMF reloaded/OMFSOUNDS/src/main.cpp
+	<cstdlib>
+	<iostream>
+	<omfsounds.h>
+
+1308851170 /home/lilezek/proyectos/OMF reloaded/OMFSOUNDS/include/omfsounds.h
+	<vector>
+	<fstream>
+
+1308855796 source:/home/lilezek/proyectos/OMF reloaded/OMFSOUNDS/src/omfsounds.cpp
+	<iostream>
+	<omfsounds.h>
+

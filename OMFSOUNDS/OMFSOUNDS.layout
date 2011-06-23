@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="include/omfsounds.h" open="1" top="1" tabpos="3">
+		<Cursor position="168" topLine="0" />
+	</File>
+	<File name="src/main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1424" topLine="0" />
+	</File>
+	<File name="src/omfsounds.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="853" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>
