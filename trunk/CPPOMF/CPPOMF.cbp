@@ -1,0 +1,117 @@
+<<<<<<< .mine
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="CPPOMF" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/CPPOMF" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/CPPOMF" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`pkg-config --cflags clanApp-2.2 clanVorbis-2.2 clanCSSLayout-2.2 clanDatabase-2.2 clanSqlite-2.2 clanGL1-2.2 clanNetwork-2.2 clanSound-2.2 clanSWRender-2.2 clanGL-2.2 clanRegExp-2.2 clanDisplay-2.2 clanGUI-2.2 clanCore-2.2`" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add option="`pkg-config --libs clanApp-2.2 clanVorbis-2.2 clanCSSLayout-2.2 clanDatabase-2.2 clanSqlite-2.2 clanGL1-2.2 clanNetwork-2.2 clanSound-2.2 clanSWRender-2.2 clanGL-2.2 clanRegExp-2.2 clanDisplay-2.2 clanGUI-2.2 clanCore-2.2 clanMikMod-2.2`" />
+		</Linker>
+		<Unit filename="include/FrameHandler.h" />
+		<Unit filename="include/Game_Frame.h" />
+		<Unit filename="include/Intro.h" />
+		<Unit filename="include/OMF_Animation.h" />
+		<Unit filename="include/OMF_background.h" />
+		<Unit filename="include/OMF_random.h" />
+		<Unit filename="include/application.h" />
+		<Unit filename="include/global_options.h" />
+		<Unit filename="src/FrameHandler.cpp" />
+		<Unit filename="src/Game_Frame.cpp" />
+		<Unit filename="src/Intro.cpp" />
+		<Unit filename="src/OMF_Animation.cpp" />
+		<Unit filename="src/OMF_background.cpp" />
+		<Unit filename="src/OMF_random.cpp" />
+		<Unit filename="src/application.cpp" />
+		<Unit filename="src/global_options.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="CPPOMF" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/CPPOMF" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/CPPOMF" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`pkg-config --cflags clanApp-2.2 clanVorbis-2.2 clanCSSLayout-2.2 clanDatabase-2.2 clanSqlite-2.2 clanGL1-2.2 clanNetwork-2.2 clanSound-2.2 clanSWRender-2.2 clanGL-2.2 clanRegExp-2.2 clanDisplay-2.2 clanGUI-2.2 clanCore-2.2`" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add option="`pkg-config --libs clanApp-2.2 clanVorbis-2.2 clanCSSLayout-2.2 clanDatabase-2.2 clanSqlite-2.2 clanGL1-2.2 clanNetwork-2.2 clanSound-2.2 clanSWRender-2.2 clanGL-2.2 clanRegExp-2.2 clanDisplay-2.2 clanGUI-2.2 clanCore-2.2 clanMikMod-2.2`" />
+		</Linker>
+		<Unit filename="include/CL_OMFProvider.h" />
+		<Unit filename="include/application.h" />
+		<Unit filename="include/global_options.h" />
+		<Unit filename="include/omfSprite.h" />
+		<Unit filename="src/CL_OMFProvider.cpp" />
+		<Unit filename="src/application.cpp" />
+		<Unit filename="src/global_options.cpp" />
+		<Unit filename="src/omfSprite.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
+>>>>>>> .r2
