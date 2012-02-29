@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1330466550 source:/home/lilezek/Proyectos/one must fall/src/CFont.cpp
+	"CFont.h"
+
+1330466550 /home/lilezek/Proyectos/one must fall/include/CFont.h
+	<string>
+	<general.h>
+	<algorithm>
+	<algorithm.h>
+	<COMF.h>
+	<SDL/SDL.h>
+
+1330548366 /home/lilezek/Proyectos/one must fall/include/general.h
+
+1330452657 source:/home/lilezek/Proyectos/one must fall/src/main.cpp
+	<COMF.h>
+
+1330530974 /home/lilezek/Proyectos/one must fall/include/COMF.h
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	<general.h>
+	<CFont.h>
+	<CSprite.h>
+
+1330532583 source:/home/lilezek/Proyectos/one must fall/src/COMF.cpp
+	"COMF.h"
+
+1330531450 source:/home/lilezek/Proyectos/one must fall/src/CPalette.cpp
+	"CPalette.h"
+
+1330531441 /home/lilezek/Proyectos/one must fall/include/CPalette.h
+	<cstring>
+	<general.h>
+
+1330466550 source:/home/lilezek/Proyectos/one must fall/src/CAnimation.cpp
+	"CAnimation.h"
+
+1330466550 /home/lilezek/Proyectos/one must fall/include/CAnimation.h
+	<CSprite.h>
+	<general.h>
+	<cstring>
+
+1330530952 /home/lilezek/Proyectos/one must fall/include/CSprite.h
+	<vector>
+	<SDL/SDL.h>
+	<CPalette.h>
+	<COMF.h>
+	<general.h>
+
+1330531401 source:/home/lilezek/Proyectos/one must fall/src/CSprite.cpp
+	"CSprite.h"
+
+1330472570 /home/lilezek/Proyectos/one must fall/include/algorithm.h
+	<cstdio>
+	<cstdlib>
+
+1330472564 source:/home/lilezek/Proyectos/one must fall/src/algorithm.cpp
+	<algorithm.h>
+
