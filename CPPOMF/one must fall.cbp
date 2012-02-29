@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="one must fall" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/one must fall" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/one must fall" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`pkg-config --cflags sdl`" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add option="`pkg-config --libs sdl`" />
+		</Linker>
+		<Unit filename="include/CAnimation.h" />
+		<Unit filename="include/CFont.h" />
+		<Unit filename="include/COMF.h" />
+		<Unit filename="include/CPalette.h" />
+		<Unit filename="include/CSprite.h" />
+		<Unit filename="include/algorithm.h" />
+		<Unit filename="include/general.h" />
+		<Unit filename="src/CAnimation.cpp" />
+		<Unit filename="src/CFont.cpp" />
+		<Unit filename="src/COMF.cpp" />
+		<Unit filename="src/CPalette.cpp" />
+		<Unit filename="src/CSprite.cpp" />
+		<Unit filename="src/algorithm.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

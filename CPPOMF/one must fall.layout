@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="include/CAnimation.h" open="1" top="0" tabpos="1">
+		<Cursor position="1320" topLine="0" />
+	</File>
+	<File name="include/CFont.h" open="0" top="0" tabpos="2">
+		<Cursor position="1022" topLine="39" />
+	</File>
+	<File name="include/COMF.h" open="1" top="0" tabpos="6">
+		<Cursor position="903" topLine="32" />
+	</File>
+	<File name="include/CPalette.h" open="0" top="0" tabpos="9">
+		<Cursor position="175" topLine="4" />
+	</File>
+	<File name="include/CSprite.h" open="1" top="0" tabpos="4">
+		<Cursor position="880" topLine="46" />
+	</File>
+	<File name="include/algorithm.h" open="1" top="0" tabpos="8">
+		<Cursor position="319" topLine="0" />
+	</File>
+	<File name="include/general.h" open="1" top="0" tabpos="7">
+		<Cursor position="663" topLine="25" />
+	</File>
+	<File name="src/CAnimation.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="635" topLine="25" />
+	</File>
+	<File name="src/CFont.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="145" topLine="0" />
+	</File>
+	<File name="src/COMF.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="2558" topLine="98" />
+	</File>
+	<File name="src/CSprite.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="3103" topLine="123" />
+	</File>
+	<File name="src/algorithm.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="335" topLine="1" />
+	</File>
+	<File name="src/main.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="0" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>
