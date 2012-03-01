@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1330626060 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<stdbool.h>
+	<main.h>
+	<types.h>
+	<sprite_header.h>
+	<font_8.h>
+
+1330614071 /home/lilezek/Proyectos/omfFileFormatUtility/include/types.h
+	<limits.h>
+
+1330624857 /home/lilezek/Proyectos/omfFileFormatUtility/include/sprite_header.h
+	<types.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1330616600 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/sprite_header.cpp
+	"sprite_header.h"
+	<stdio.h>
+
+1330624945 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/sprite_header.c
+	"sprite_header.h"
+	<main.h>
+
+1330619654 /home/lilezek/Proyectos/omfFileFormatUtility/include/main.h
+
+1330627826 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/font_8.c
+	"font_8.h"
+	<main.h>
+
+1330624679 /home/lilezek/Proyectos/omfFileFormatUtility/include/font_8.h
+	<types.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
