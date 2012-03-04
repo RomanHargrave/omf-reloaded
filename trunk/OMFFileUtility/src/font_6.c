@@ -1,8 +1,8 @@
-#include "font_8.h"
+#include "font_6.h"
 
 #include <main.h>
 
-font8 loadFont8(FILE * pFile)
+font6 loadFont6(FILE * pFile)
 {
     // Get size:
     int pointer = ftell(pFile);
@@ -13,28 +13,28 @@ font8 loadFont8(FILE * pFile)
 
     // Check how much letters there are in this font:
     sz -= pointer;
-    sz /= sizeof(font8Letter);
+    sz /= sizeof(font6Letter);
 
     // Allocate memory:
-    font8 result;
-    result.f = (font8Letter*)malloc(sizeof(font8Letter)*sz);
+    font6 result;
+    result.f = (font6Letter*)malloc(sizeof(font6Letter)*sz);
     result.size = sz;
 
     // Read letters:
-    int r = fread(result.f,sizeof(font8Letter),sz,pFile);
+    int r = fread(result.f,sizeof(font6Letter),sz,pFile);
     if (r != sz)
     {
-        fprintf(stderr, "Error: couldn't read a font.\n");
+        fprintf(stderr, "Error: couldn't read the font.\n");
         exit(0);
     }
     return result;
 }
 
-void saveFont8(font8 f, FILE * pFile, int position)
+void saveFont6(font6 f, FILE * pFile, int position)
 {
     int backup = ftell(pFile);
     fseek(pFile,position,SEEK_SET);
-    int w = fwrite(f.f,sizeof(font8Letter),f.size,pFile);
+    int w = fwrite(f.f,sizeof(font6Letter),f.size,pFile);
     if (f.size != w)
     {
         fprintf(stderr,"Error: couldn't write the font.\n");
@@ -43,11 +43,11 @@ void saveFont8(font8 f, FILE * pFile, int position)
     fseek(pFile,backup,SEEK_SET);
 }
 
-void printFont8Letter(font8Letter fl,char c, int offset)
+void printFont6Letter(font6Letter fl,char c, int offset)
 {
     printf("0x%04X: %c\n",offset,c);
     int i;
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < 6; i++)
     {
         BYTE line = fl[i];
         int j;
@@ -63,18 +63,18 @@ void printFont8Letter(font8Letter fl,char c, int offset)
     }
 }
 
-void printFont8(font8 f,int offset)
+void printFont6(font6 f,int offset)
 {
     int i;
     for (i = 0; i < f.size; i++)
     {
-        printFont8Letter(f.f[i],32+i,offset + i*sizeof(font8Letter));
+        printFont6Letter(f.f[i],32+i,offset + i*sizeof(font6Letter));
     }
 }
 
-font8 font8Editor(font8 in, int offset)
+font6 font6Editor(font6 in, int offset)
 {
-    font8 out = in;
+    font6 out = in;
     char action[512];
     while (strcmp(action,"exit"))
     {
@@ -87,7 +87,7 @@ font8 font8Editor(font8 in, int offset)
             continue;
         if (!strcmp(action,"show"))
         {
-            printFont8(out,offset);
+            printFont6(out,offset);
         }
         else if (!strcmp(action,"help"))
         {
@@ -98,7 +98,7 @@ font8 font8Editor(font8 in, int offset)
             scanf("%s",action);
             int i;
             for (i = 0; i < strlen(action);i++)
-                printFont8Letter(out.f[action[i]-32],action[i],offset+(action[i]-32)*sizeof(font8Letter));
+                printFont6Letter(out.f[action[i]-32],action[i],offset+(action[i]-32)*sizeof(font6Letter));
         }
         else if (!strcmp(action,"edit"))
         {
@@ -106,15 +106,15 @@ font8 font8Editor(font8 in, int offset)
             printf("If you want to edit space symbol, just write \"\"\n");
             char characters[128];
             scanf("%s",characters);
-            printf("Now write 8 lines of 8 characters each one, where\n");
+            printf("Now write 6 lines of 8 characters each one, where\n");
             printf(". means blank space and # means occupied space:\n");
             // Edit space character:
             if (!strcmp(characters,"\"\""))
             {
                 printf("Space:\n");
                 int i;
-                // 8 Lines:
-                for (i = 0; i < 8; i++)
+                // 6 Lines:
+                for (i = 0; i < 6; i++)
                 {
                     // Get line:
                     scanf("%s",action);
@@ -131,7 +131,7 @@ font8 font8Editor(font8 in, int offset)
                     out.f[' '-32][i] = line;
                 }
                 printf("Successful edition. Your letter:\n");
-                printFont8Letter(out.f[' '-32],' ',(' '-32)*sizeof(font8Letter)+offset);
+                printFont6Letter(out.f[' '-32],' ',(' '-32)*sizeof(font6Letter)+offset);
             }
             // Any kind of characters:
             else
@@ -143,8 +143,8 @@ font8 font8Editor(font8 in, int offset)
                     char editting = characters[k];
                     printf("%c:\n",editting);
                     int i;
-                    // 8 Lines:
-                    for (i = 0; i < 8; i++)
+                    // 6 Lines:
+                    for (i = 0; i < 6; i++)
                     {
                         // Get line:
                         scanf("%s",action);
@@ -161,7 +161,7 @@ font8 font8Editor(font8 in, int offset)
                         out.f[editting-32][i] = line;
                     }
                     printf("Successful edition. Your letter:\n");
-                    printFont8Letter(out.f[editting-32],editting,(editting-32)*sizeof(font8Letter)+offset);
+                    printFont6Letter(out.f[editting-32],editting,(editting-32)*sizeof(font6Letter)+offset);
                 }
             }
         }

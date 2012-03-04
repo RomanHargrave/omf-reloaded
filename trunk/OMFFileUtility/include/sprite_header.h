@@ -24,14 +24,15 @@ sSpriteHeader loadSpriteHeader(FILE *);
 /**
 *
 */
-void saveSpriteHeader(sSpriteHeader,FILE *);
+void saveSpriteHeader(sSpriteHeader,FILE *,int);
 /**
 *   Prints a sprite header
 */
 void printSpriteHeader(sSpriteHeader,int offset);
 /**
-*   Gains control of the program and converts it into a sprite header editor:
+*   Gains control of the program and converts it into a sprite header editor.
+*   That int is the offset of the file.
 */
-sSpriteHeader spriteHeaderEditor(sSpriteHeader);
+sSpriteHeader spriteHeaderEditor(sSpriteHeader,int);
 
 #endif // SPRITE_HEADER_H

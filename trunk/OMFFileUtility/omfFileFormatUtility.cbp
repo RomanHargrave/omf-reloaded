@@ -32,10 +32,14 @@
 			<Add option="-Wall" />
 			<Add directory="include" />
 		</Compiler>
+		<Unit filename="include/font_6.h" />
 		<Unit filename="include/font_8.h" />
 		<Unit filename="include/main.h" />
 		<Unit filename="include/sprite_header.h" />
 		<Unit filename="include/types.h" />
+		<Unit filename="src/font_6.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/font_8.c">
 			<Option compilerVar="CC" />
 		</Unit>
