@@ -13,14 +13,17 @@ sSpriteHeader loadSpriteHeader(FILE * pFile)
     return result;
 }
 
-void saveSpriteHeader(sSpriteHeader s,FILE * pFile)
+void saveSpriteHeader(sSpriteHeader s,FILE * pFile,int position)
 {
+    int backup = ftell(pFile);
+    fseek(pFile,position,SEEK_SET);
     int w = fwrite(&s, sizeof(s),1,pFile);
     if (w != 1)
     {
         fprintf(stderr, "Error saving the sprite header.\n");
         exit(0);
     }
+    fseek(pFile,backup,SEEK_SET);
 }
 
 void printSpriteHeader(sSpriteHeader s, int offset)
@@ -41,7 +44,7 @@ void printSpriteHeader(sSpriteHeader s, int offset)
     printf("0x%X: %3d\t\tData missing\n",index,s.dataMissing);
 }
 
-sSpriteHeader spriteHeaderEditor(sSpriteHeader in)
+sSpriteHeader spriteHeaderEditor(sSpriteHeader in, int offset)
 {
     sSpriteHeader out = in;
     char action[512];
@@ -56,11 +59,23 @@ sSpriteHeader spriteHeaderEditor(sSpriteHeader in)
             continue;
         if (!strcmp(action,"show"))
         {
-            printSpriteHeader(out,0);
+            printSpriteHeader(out,offset);
         }
         else if (!strcmp(action,"help"))
         {
             showCommandsHelp();
+        }
+        else if (!strcmp(action,"set"))
+        {
+            char kind[64];
+            int pos;
+            int value;
+            scanf("%s %X %d",kind,&pos,&value);
+            if (pos < offset || pos > offset+12)
+            {
+                printf("Attemp to write outside the sprite header");
+            }
+            modifyValue(kind,pos-offset,value,&out);
         }
         else
         {

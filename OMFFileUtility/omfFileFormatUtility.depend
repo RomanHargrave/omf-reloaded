@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1330626060 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/main.c
+1330870918 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -9,11 +9,12 @@
 	<types.h>
 	<sprite_header.h>
 	<font_8.h>
+	<font_6.h>
 
 1330614071 /home/lilezek/Proyectos/omfFileFormatUtility/include/types.h
 	<limits.h>
 
-1330624857 /home/lilezek/Proyectos/omfFileFormatUtility/include/sprite_header.h
+1330720730 /home/lilezek/Proyectos/omfFileFormatUtility/include/sprite_header.h
 	<types.h>
 	<stdio.h>
 	<stdlib.h>
@@ -23,17 +24,27 @@
 	"sprite_header.h"
 	<stdio.h>
 
-1330624945 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/sprite_header.c
+1330722992 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/sprite_header.c
 	"sprite_header.h"
 	<main.h>
 
-1330619654 /home/lilezek/Proyectos/omfFileFormatUtility/include/main.h
+1330723068 /home/lilezek/Proyectos/omfFileFormatUtility/include/main.h
 
-1330627826 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/font_8.c
+1330872486 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/font_8.c
 	"font_8.h"
 	<main.h>
 
-1330624679 /home/lilezek/Proyectos/omfFileFormatUtility/include/font_8.h
+1330869773 /home/lilezek/Proyectos/omfFileFormatUtility/include/font_8.h
+	<types.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1330872480 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/font_6.c
+	"font_6.h"
+	<main.h>
+
+1330870549 /home/lilezek/Proyectos/omfFileFormatUtility/include/font_6.h
 	<types.h>
 	<stdio.h>
 	<stdlib.h>

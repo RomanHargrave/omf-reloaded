@@ -7,6 +7,7 @@
 #include <types.h>
 #include <sprite_header.h>
 #include <font_8.h>
+#include <font_6.h>
 
 int main(int argc, char ** argv)
 {
@@ -57,10 +58,12 @@ void showCommandsHelp()
         printf("Error trying to clear screen.\n");
     }
     printf("Commands:\n");
-    printf("show\n");
-    printf("letters (only font8 or font6 mode)\n");
-    printf("exit\n");
-    printf("help\n");
+    printf("show (gives information about the file you are watching)\n");
+    printf("letters (shows letters of the font, only font8 or font6 mode)\n");
+    printf("edit (gives you an interface to edit the file, only font8 or font6 mode)\n");
+    printf("set (set a value in the file)\n");
+    printf("exit (closes the editor you are in)\n");
+    printf("help (shows this help) \n");
 }
 
 void optionParser(char * option)
@@ -134,8 +137,8 @@ void parseFile(FILE * pFile)
             printf("Error trying to clear screen.\n");
         }
         sSpriteHeader s = loadSpriteHeader(pFile);
-        s = spriteHeaderEditor(s);
-        saveSpriteHeader(s,pFile);
+        s = spriteHeaderEditor(s,0);
+        saveSpriteHeader(s,pFile,0);
     }
     else if (fileType == FONT_8)
     {
@@ -144,13 +147,85 @@ void parseFile(FILE * pFile)
             printf("Error trying to clear screen.\n");
         }
         font8 f = loadFont8(pFile);
-        f = font8Editor(f);
-        saveFont8(f,pFile);
+        f = font8Editor(f,0);
+        saveFont8(f,pFile,0);
+    }
+    else if (fileType == FONT_6)
+    {
+        if (SYSTEM_CLEAR)
+        {
+            printf("Error trying to clear screen.\n");
+        }
+        font6 f = loadFont6(pFile);
+        f = font6Editor(f,0);
+        saveFont6(f,pFile,0);
     }
 }
 
 /// ------------------------ END OF FILE PARSING FUNCTIONS -----------------------
-/// ------------------------ START OF GENERAL PURPSE FUNCS -----------------------
+/// ------------------------ START OF GENERAL PURPOSE FUNCS -----------------------
+
+void modifyValue(const char * kind, int pos, int value, void * mem)
+{
+    if (!strcmp(kind,"byte"))
+    {
+        if (value > 255)
+        {
+            printf("You can not write a value higher than 255 in a single byte");
+        }
+        else
+        {
+            BYTE * p = (void*)mem;
+            p += pos;
+            *p = value;
+        }
+    }
+    else if (!strcmp(kind,"sbyte"))
+    {
+        if (value < -128 || value > 127)
+        {
+            printf("You can not write a value outside [-128,127] in a single signed byte");
+        }
+        else
+        {
+            char * p = (void*)mem;
+            p += pos;
+            *p = value;
+        }
+    }
+    else if (!strcmp(kind,"word"))
+    {
+        if (value > 65535)
+        {
+            printf("You can not write a value higher than 65535 in a single word");
+        }
+        else
+        {
+            WORD * p = (void*)mem;
+            p += pos;
+            *p = value;
+        }
+    }
+    else if (!strcmp(kind,"sword"))
+    {
+        if (value > 32767 || value < -32768)
+        {
+            printf("You can not write a value outside [-32768,32767] in a signed word");
+        }
+        else
+        {
+            short * p = (void*)mem;
+            p += pos;
+            *p = value;
+        }
+    }
+    else if (!strcmp(kind,"dword"))
+    {
+        DWORD * p = (void*)mem;
+        p += pos;
+        *p = value;
+    }
+}
 
 int fileSize(FILE * pFile)
 {

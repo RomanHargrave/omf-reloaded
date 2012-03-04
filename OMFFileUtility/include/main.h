@@ -3,7 +3,7 @@
 
 /// Constant definitions:
 #define MAJOR_VERSION 0
-#define MINOR_VERSION 1
+#define MINOR_VERSION 2
 
 /// Macros:
 #if __unix
@@ -17,6 +17,11 @@ enum fileTypes
 
 char * fileToParse;
 
+/**
+*   It modifies the value of the void pointer at int position giving int value. char * can be:
+*   byte sbyte word sword dword
+*/
+void modifyValue(const char * ,int,int,void*);
 
 /**
 *   It parses all arguments.
