@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <main.h>
 #include <types.h>
-#include <sprite_header.h>
+#include <sprite.h>
 #include <font_8.h>
 #include <font_6.h>
 
@@ -46,7 +46,7 @@ void showHelp()
     printf("-i<file>\t\t\tFile to include\n");
     printf("-t<type file>\t\t\tKind of file to parse\n");
     printf("\tKind of files you can select are:\n");
-    printf("\tsprite spriteh font8 font6\n");
+    printf("\tsprite spriteh sprited font8 font6\n");
     // Exit to stop the program doing anything else.
     exit(0);
 }
@@ -83,10 +83,13 @@ void optionParser(char * option)
             fileType = SPRITE;
         else if (strcmp(option,"spriteh") == 0)
             fileType = SPRITE_HEADER;
+        else if (strcmp(option,"sprited") == 0)
+            fileType = SPRITE_DATA;
         else if (strcmp(option,"font8") == 0)
             fileType = FONT_8;
         else if (strcmp(option,"font6") == 0)
             fileType = FONT_6;
+
     }
 
 }
@@ -116,6 +119,12 @@ enum fileTypes detectFileType(FILE * pFile)
     // So, this can be a sprite header or empty sprite.
     if (fileSize(pFile) == 12)
         return SPRITE_HEADER;
+
+    // Sprites have their own size at the first WORD. So:
+    WORD s;
+    fread(&s,sizeof(s),1,pFile);
+    if (fileSize(pFile) == 12 + s)
+        return SPRITE;
     return AUTO;
 }
 
@@ -132,31 +141,36 @@ void parseFile(FILE * pFile)
     // Reading sprite header:
     else if (fileType == SPRITE_HEADER)
     {
-        if (SYSTEM_CLEAR)
-        {
-            printf("Error trying to clear screen.\n");
-        }
-        sSpriteHeader s = loadSpriteHeader(pFile);
+        SYSTEM_CLEAR;
+        sSpriteHeader s = loadSpriteHeader(pFile,0);
         s = spriteHeaderEditor(s,0);
         saveSpriteHeader(s,pFile,0);
     }
+    else if (fileType == SPRITE_DATA)
+    {
+        SYSTEM_CLEAR;
+        spriteData s = loadSpriteData(pFile,0,fileSize(pFile));
+        s = spriteDataEditor(s,0);
+        saveSpriteData(s,pFile,0);
+    }
+    else if (fileType == SPRITE)
+    {
+        SYSTEM_CLEAR;
+        sSprite spr = loadSprite(pFile,0);
+        spr = spriteEditor(spr,0);
+        saveSprite(spr,pFile,0);
+    }
     else if (fileType == FONT_8)
     {
-        if (SYSTEM_CLEAR)
-        {
-            printf("Error trying to clear screen.\n");
-        }
-        font8 f = loadFont8(pFile);
+        SYSTEM_CLEAR;
+        sFont8 f = loadFont8(pFile,0);
         f = font8Editor(f,0);
         saveFont8(f,pFile,0);
     }
     else if (fileType == FONT_6)
     {
-        if (SYSTEM_CLEAR)
-        {
-            printf("Error trying to clear screen.\n");
-        }
-        font6 f = loadFont6(pFile);
+        SYSTEM_CLEAR;
+        sFont6 f = loadFont6(pFile,0);
         f = font6Editor(f,0);
         saveFont6(f,pFile,0);
     }

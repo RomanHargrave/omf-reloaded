@@ -1,17 +1,21 @@
-#include "sprite_header.h"
+#include "sprite_data.h"
 #include <main.h>
 
-sSpriteHeader loadSpriteHeader(FILE * pFile, int position)
+spriteData loadSpriteData(FILE * pFile, int position, int size)
 {
     int backup = ftell(pFile);
     // Start at position:
     fseek(pFile,position,SEEK_SET);
 
-    sSpriteHeader result;
-    int sz = fread(&result,sizeof(result),1,pFile);
-    if (sz != 1)
+    spriteData result;
+
+    result.size = size;
+    result.data = (BYTE*)malloc(sizeof(BYTE)*result.size);
+
+    int sz = fread(result.data,sizeof(BYTE),result.size,pFile);
+    if (sz != result.size)
     {
-        fprintf(stderr, "Error reading a sprite header from file.\n");
+        fprintf(stderr, "Error reading sprite data from file.\n");
         exit(0);
     }
 
@@ -21,12 +25,12 @@ sSpriteHeader loadSpriteHeader(FILE * pFile, int position)
     return result;
 }
 
-void saveSpriteHeader(sSpriteHeader s,FILE * pFile,int position)
+void saveSpriteData(spriteData s,FILE * pFile,int position)
 {
     int backup = ftell(pFile);
     fseek(pFile,position,SEEK_SET);
-    int w = fwrite(&s, sizeof(s),1,pFile);
-    if (w != 1)
+    int w = fwrite(s.data, sizeof(BYTE),s.size,pFile);
+    if (w != s.size)
     {
         fprintf(stderr, "Error saving the sprite header.\n");
         exit(0);
@@ -34,32 +38,54 @@ void saveSpriteHeader(sSpriteHeader s,FILE * pFile,int position)
     fseek(pFile,backup,SEEK_SET);
 }
 
-void destroySpriteHeader(sSpriteHeader s)
+void destroySpriteData(spriteData s)
 {
-
+    free(s.data);
 }
 
-void printSpriteHeader(sSpriteHeader s, int offset)
+void printSpriteData(spriteData s, int offset)
 {
-    int index = offset;
-    printf("0x%X: %3d\t\tLength\n",index,s.length);
-    index += sizeof(s.length);
-    printf("0x%X: %3d\t\tX\n",index,s.x);
-    index += sizeof(s.x);
-    printf("0x%X: %3d\t\tY\n",index,s.y);
-    index += sizeof(s.y);
-    printf("0x%X: %3d\t\tWidth\n",index,s.width);
-    index += sizeof(s.width);
-    printf("0x%X: %3d\t\tHeight\n",index,s.height);
-    index += sizeof(s.height);
-    printf("0x%X: %3d\t\tIndex\n",index,s.index);
-    index += sizeof(s.index);
-    printf("0x%X: %3d\t\tData missing\n",index,s.dataMissing);
+    // Iterate over all data:
+    int i = 0;
+    while(i < s.size)
+    {
+        WORD * p = (WORD*)&s.data[i];
+        i+=sizeof(WORD);
+        int opcode  = (*p)%4;
+        int info    = (*p)/4;
+
+        printf("0x%04X: %d\t\t",offset+i,*p);
+        if (opcode == 0)
+        {
+           printf("Set X to %d\n",info);
+        }
+        else if (opcode == 2)
+        {
+           printf("Set Y to %d\n",info);
+        }
+        else if (opcode == 1)
+        {
+           printf("Store %d pixels\n",info);
+           while(info)
+           {
+               BYTE pix = s.data[i];
+               i += sizeof(BYTE);
+               printf("0x%02X ",pix);
+               info--;
+           }
+           printf("\n");
+        }
+        else if (opcode == 3)
+        {
+            printf("End of sprite data\n");
+            break;
+        }
+    }
 }
 
-sSpriteHeader spriteHeaderEditor(sSpriteHeader in, int offset)
+spriteData spriteDataEditor(spriteData in, int offset)
 {
-    sSpriteHeader out = in;
+    spriteData out = in;
     char action[512];
     while (strcmp(action,"exit"))
     {
@@ -72,7 +98,7 @@ sSpriteHeader spriteHeaderEditor(sSpriteHeader in, int offset)
             continue;
         if (!strcmp(action,"show"))
         {
-            printSpriteHeader(out,offset);
+            printSpriteData(out,offset);
         }
         else if (!strcmp(action,"help"))
         {
@@ -86,7 +112,7 @@ sSpriteHeader spriteHeaderEditor(sSpriteHeader in, int offset)
             scanf("%s %X %d",kind,&pos,&value);
             if (pos < offset || pos > offset+12)
             {
-                printf("Attemp to write outside the sprite header");
+                printf("Attemp to write outside the sprite data");
             }
             modifyValue(kind,pos-offset,value,&out);
         }

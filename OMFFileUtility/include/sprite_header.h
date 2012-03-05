@@ -20,11 +20,16 @@ typedef struct
 /**
 *   Loads a sprite header from file
 */
-sSpriteHeader loadSpriteHeader(FILE *);
+sSpriteHeader loadSpriteHeader(FILE *, int);
 /**
-*
+*   Saves a sprite header.
 */
 void saveSpriteHeader(sSpriteHeader,FILE *,int);
+/**
+*   Destroys a sprite header. This is only for standar pursposes,
+*   as this function does nothing.
+*/
+void destroySpriteHeader(sSpriteHeader);
 /**
 *   Prints a sprite header
 */
