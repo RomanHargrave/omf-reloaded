@@ -11,18 +11,23 @@ typedef struct
 {
     int size;
     font6Letter * f;
-} font6;
+} sFont6;
 
 /**
 *   Loads a font from file
 *   WARNING: Free the pointer of the struct when you don't need it.
 */
-font6 loadFont6(FILE *);
+sFont6 loadFont6(FILE *, int);
 
 /**
 *   Saves a font in a file at the position of the int
 */
-void saveFont6(font6, FILE *,int);
+void saveFont6(sFont6, FILE *,int);
+
+/**
+*   Destroys a font6
+*/
+void destroyFont6(sFont6);
 
 /**
 *   Prints a single character, with char representation and offset int
@@ -32,7 +37,7 @@ void printFont6Letter(font6Letter,char,int);
 /**
 *   Prints a whole font:
 */
-void printFont6(font6,int);
+void printFont6(sFont6,int);
 
 /**
 *   Gains control of the program and converts it into a font8 editor.
@@ -40,6 +45,6 @@ void printFont6(font6,int);
 *   WARNING: The pointer of the struct returned is the same that the pointer given
 *   as argument. So, don't free it unless you want to free the result's pointer.
 */
-font6 font6Editor(font6, int);
+sFont6 font6Editor(sFont6, int);
 
 #endif // FONT_6_H

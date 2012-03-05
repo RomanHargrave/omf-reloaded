@@ -2,8 +2,12 @@
 
 #include <main.h>
 
-font6 loadFont6(FILE * pFile)
+sFont6 loadFont6(FILE * pFile, int position)
 {
+    int backup = ftell(pFile);
+    // Start at position:
+    fseek(pFile,position,SEEK_SET);
+
     // Get size:
     int pointer = ftell(pFile);
     int sz = fileSize(pFile);
@@ -16,7 +20,7 @@ font6 loadFont6(FILE * pFile)
     sz /= sizeof(font6Letter);
 
     // Allocate memory:
-    font6 result;
+    sFont6 result;
     result.f = (font6Letter*)malloc(sizeof(font6Letter)*sz);
     result.size = sz;
 
@@ -27,10 +31,14 @@ font6 loadFont6(FILE * pFile)
         fprintf(stderr, "Error: couldn't read the font.\n");
         exit(0);
     }
+
+    // return file to position:
+    fseek(pFile,backup,SEEK_SET);
+
     return result;
 }
 
-void saveFont6(font6 f, FILE * pFile, int position)
+void saveFont6(sFont6 f, FILE * pFile, int position)
 {
     int backup = ftell(pFile);
     fseek(pFile,position,SEEK_SET);
@@ -41,6 +49,14 @@ void saveFont6(font6 f, FILE * pFile, int position)
         exit(0);
     }
     fseek(pFile,backup,SEEK_SET);
+}
+
+/**
+*   Destroys a font6
+*/
+void destroyFont6(sFont6 f)
+{
+    free(f.f);
 }
 
 void printFont6Letter(font6Letter fl,char c, int offset)
@@ -63,7 +79,7 @@ void printFont6Letter(font6Letter fl,char c, int offset)
     }
 }
 
-void printFont6(font6 f,int offset)
+void printFont6(sFont6 f,int offset)
 {
     int i;
     for (i = 0; i < f.size; i++)
@@ -72,9 +88,9 @@ void printFont6(font6 f,int offset)
     }
 }
 
-font6 font6Editor(font6 in, int offset)
+sFont6 font6Editor(sFont6 in, int offset)
 {
-    font6 out = in;
+    sFont6 out = in;
     char action[512];
     while (strcmp(action,"exit"))
     {
@@ -168,6 +184,21 @@ font6 font6Editor(font6 in, int offset)
         else if (!strcmp(action,"set"))
         {
             printf("You are in font mode. Please, use the command edit instead.\n");
+        }
+        else if (!strcmp(action,"save"))
+        {
+            char filename[128];
+            scanf("%s",filename);
+            FILE * pFile = fopen(filename,"wb");
+            if (pFile)
+            {
+                saveFont6(out,pFile,0);
+                fclose(pFile);
+            }
+            else
+            {
+                printf("Could not open or create %s file\n",filename);
+            }
         }
         else
         {

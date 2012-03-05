@@ -2,8 +2,12 @@
 
 #include <main.h>
 
-font8 loadFont8(FILE * pFile)
+sFont8 loadFont8(FILE * pFile, int position)
 {
+    int backup = ftell(pFile);
+    // Start at position:
+    fseek(pFile,position,SEEK_SET);
+
     // Get size:
     int pointer = ftell(pFile);
     int sz = fileSize(pFile);
@@ -16,7 +20,7 @@ font8 loadFont8(FILE * pFile)
     sz /= sizeof(font8Letter);
 
     // Allocate memory:
-    font8 result;
+    sFont8 result;
     result.f = (font8Letter*)malloc(sizeof(font8Letter)*sz);
     result.size = sz;
 
@@ -27,10 +31,14 @@ font8 loadFont8(FILE * pFile)
         fprintf(stderr, "Error: couldn't read a font.\n");
         exit(0);
     }
+
+    // return file to position:
+    fseek(pFile,backup,SEEK_SET);
+
     return result;
 }
 
-void saveFont8(font8 f, FILE * pFile, int position)
+void saveFont8(sFont8 f, FILE * pFile, int position)
 {
     int backup = ftell(pFile);
     fseek(pFile,position,SEEK_SET);
@@ -63,7 +71,7 @@ void printFont8Letter(font8Letter fl,char c, int offset)
     }
 }
 
-void printFont8(font8 f,int offset)
+void printFont8(sFont8 f,int offset)
 {
     int i;
     for (i = 0; i < f.size; i++)
@@ -72,9 +80,9 @@ void printFont8(font8 f,int offset)
     }
 }
 
-font8 font8Editor(font8 in, int offset)
+sFont8 font8Editor(sFont8 in, int offset)
 {
-    font8 out = in;
+    sFont8 out = in;
     char action[512];
     while (strcmp(action,"exit"))
     {
@@ -168,6 +176,21 @@ font8 font8Editor(font8 in, int offset)
         else if (!strcmp(action,"set"))
         {
             printf("You are in font mode. Please, use the command edit instead.\n");
+        }
+        else if (!strcmp(action,"save"))
+        {
+            char filename[128];
+            scanf("%s",filename);
+            FILE * pFile = fopen(filename,"wb");
+            if (pFile)
+            {
+                saveFont8(out,pFile,0);
+                fclose(pFile);
+            }
+            else
+            {
+                printf("Could not open or create %s file\n",filename);
+            }
         }
         else
         {

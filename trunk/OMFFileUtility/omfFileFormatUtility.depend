@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1330870918 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/main.c
+1330976527 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -7,14 +7,14 @@
 	<stdbool.h>
 	<main.h>
 	<types.h>
-	<sprite_header.h>
+	<sprite.h>
 	<font_8.h>
 	<font_6.h>
 
 1330614071 /home/lilezek/Proyectos/omfFileFormatUtility/include/types.h
 	<limits.h>
 
-1330720730 /home/lilezek/Proyectos/omfFileFormatUtility/include/sprite_header.h
+1330974982 /home/lilezek/Proyectos/omfFileFormatUtility/include/sprite_header.h
 	<types.h>
 	<stdio.h>
 	<stdlib.h>
@@ -24,27 +24,53 @@
 	"sprite_header.h"
 	<stdio.h>
 
-1330722992 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/sprite_header.c
+1330974192 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/sprite_header.c
 	"sprite_header.h"
 	<main.h>
 
-1330723068 /home/lilezek/Proyectos/omfFileFormatUtility/include/main.h
+1330975033 /home/lilezek/Proyectos/omfFileFormatUtility/include/main.h
 
-1330872486 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/font_8.c
+1330974099 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/font_8.c
 	"font_8.h"
 	<main.h>
 
-1330869773 /home/lilezek/Proyectos/omfFileFormatUtility/include/font_8.h
+1330973881 /home/lilezek/Proyectos/omfFileFormatUtility/include/font_8.h
 	<types.h>
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1330872480 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/font_6.c
+1330974065 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/font_6.c
 	"font_6.h"
 	<main.h>
 
-1330870549 /home/lilezek/Proyectos/omfFileFormatUtility/include/font_6.h
+1330973884 /home/lilezek/Proyectos/omfFileFormatUtility/include/font_6.h
+	<types.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1330973975 source:/home/lilezek/Proyectos/omfFileFormatUtility/sprite.c
+	"sprite.h"
+	<main.h>
+
+1330975191 /home/lilezek/Proyectos/omfFileFormatUtility/include/sprite.h
+	<types.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<sprite_header.h>
+	<sprite_data.h>
+
+1330978537 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/sprite_data.c
+	"sprite_data.h"
+	<main.h>
+
+1330977765 source:/home/lilezek/Proyectos/omfFileFormatUtility/src/sprite.c
+	"sprite.h"
+	<main.h>
+
+1330975316 /home/lilezek/Proyectos/omfFileFormatUtility/include/sprite_data.h
 	<types.h>
 	<stdio.h>
 	<stdlib.h>

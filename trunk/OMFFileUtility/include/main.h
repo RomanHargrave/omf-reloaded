@@ -12,7 +12,7 @@
 
 enum fileTypes
 {
-    AUTO,SPRITE_HEADER,SPRITE,FONT_8, FONT_6
+    AUTO,SPRITE_HEADER,SPRITE_DATA,SPRITE,FONT_8, FONT_6
 } fileType;
 
 char * fileToParse;
